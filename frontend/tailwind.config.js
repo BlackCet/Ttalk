@@ -1,4 +1,4 @@
-/* eslint-env node */ // Add this line
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -18,7 +18,7 @@ module.exports = {
   plugins: [
     require('daisyui'),
   ],
-  // Optional DaisyUI configuration if you want it
+
   daisyui: {
     themes: ["light"], 
     base: true,

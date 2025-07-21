@@ -7,7 +7,7 @@ const Login = ({ onLoginSuccess }) => {
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,7 +20,7 @@ const Login = ({ onLoginSuccess }) => {
     setLoading(true);
 
     try {
-      // --- ACTUAL API CALL ---
+     
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
         {
@@ -30,32 +30,29 @@ const Login = ({ onLoginSuccess }) => {
         { withCredentials: true }
       );
 
-      // --- CRITICAL CORRECTION: Use ACTUAL data from backend response ---
-      // IMPORTANT: Adjust 'res.data.token' and 'res.data.user._id'
-      // based on the exact structure of your backend's successful login response.
-      // You should inspect your network tab (F12) to confirm this.
+      
       const token = res.data.token;
-      const userId = res.data.user._id; // Example: if your backend sends { token: "...", user: { _id: "..." } }
+      const userId = res.data.user._id; 
 
       if (token && userId) {
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
 
         setMessage('Login successful!');
-        setIsError(false); // Reset error state on success
+        setIsError(false); 
         if (onLoginSuccess) {
-          onLoginSuccess(); // Update parent (Home) component's login status
+          onLoginSuccess(); 
         }
-        // --- ACTUAL NAVIGATION ---
-        navigate('/users'); // Redirect to the users page after successful login
+       
+        navigate('/users');
       } else {
-        // Fallback if backend response is unexpectedly missing token/userId
+        
         setMessage('Login successful, but token/user ID missing in response.');
         setIsError(true);
       }
 
     } catch (err) {
-      console.error("Login error:", err.response?.data || err.message); // Log detailed error for debugging
+      console.error("Login error:", err.response?.data || err.message); 
       setMessage(err.response?.data?.msg || 'Login failed. Please check your credentials.');
       setIsError(true);
     } finally {
@@ -65,7 +62,7 @@ const Login = ({ onLoginSuccess }) => {
 
   const handleGoogleLogin = () => {
     console.log('Initiating Google Login');
-    // For Google OAuth, window.open is appropriate as it redirects the entire window
+    
     window.open(`${import.meta.env.VITE_BACKEND_URL}/api/auth/google`, '_self');
   };
 
@@ -128,7 +125,7 @@ const Login = ({ onLoginSuccess }) => {
 
         <p className="text-center text-gray-600 my-3">or</p>
 
-        {/* Changed button to Link for proper navigation to external OAuth */}
+        
         <Link
           to={`${import.meta.env.VITE_BACKEND_URL}/api/auth/google`}
           target="_self"

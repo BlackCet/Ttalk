@@ -1,17 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { getAllUsers } = require('../controllers/userController'); // Import getAllUsers
-const User = require('../models/User'); // Import User model
-const protect = require('../middleware/authMiddleware'); // Import the protect middleware
+const { getAllUsers } = require('../controllers/userController'); 
+const User = require('../models/User');
+const protect = require('../middleware/authMiddleware'); 
 
-// @route   GET /api/users
-// @desc    Get all users (excluding current user, for chat list)
-// @access  Private (requires JWT)
-router.get('/', protect, getAllUsers); // This route now uses protect middleware
 
-// @route   GET /api/me
-// @desc    Get current authenticated user's profile
-// @access  Private (requires JWT)
+router.get('/', protect, getAllUsers); 
+
+
 router.get('/me', protect, async (req, res) => {
   try {
     if (!req.user) {
@@ -24,9 +20,6 @@ router.get('/me', protect, async (req, res) => {
   }
 });
 
-// @route   PUT /api/profile
-// @desc    Update user profile (e.g., add mobile number)
-// @access  Private (requires JWT)
 router.put('/profile', protect, async (req, res) => {
   const { name, email, mobile, password } = req.body;
 
@@ -57,10 +50,10 @@ router.put('/profile', protect, async (req, res) => {
       }
 
       if (password !== undefined && password !== '') {
-        // WARNING: Replace with actual password hashing in a real application!
-        // const bcrypt = require('bcryptjs');
-        // const salt = await bcrypt.genSalt(10);
-        // user.password = await bcrypt.hash(password, salt);
+        
+        const bcrypt = require('bcryptjs');
+        const salt = await bcrypt.genSalt(10);
+       user.password = await bcrypt.hash(password, salt);
         user.password = password;
       }
 

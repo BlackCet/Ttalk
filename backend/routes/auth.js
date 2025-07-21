@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const { signup, login, logoutUser } = require('../controllers/authController'); // Import from authController.js
+const { signup, login, logoutUser } = require('../controllers/authController'); 
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-// --- Standard Authentication Routes ---
+
 router.post('/logout', logoutUser);
 router.post('/signup', signup);
 router.post('/login', login);
 
-// --- Google OAuth Routes ---
+
 
 router.get(
   '/google',

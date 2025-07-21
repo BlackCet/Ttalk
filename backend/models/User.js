@@ -7,26 +7,26 @@ const userSchema = new mongoose.Schema({
     unique: true,
     sparse: true,
     required: false,
-    default: undefined // Ensures field is omitted if not provided
+    default: undefined 
   },
   mobile: {
     type: String,
     unique: true,
     sparse: true,
     required: false,
-    default: undefined // Ensures field is omitted if not provided
+    default: undefined 
   },
   password: {
     type: String,
     required: false,
-    default: undefined // Ensures field is omitted if not provided
+    default: undefined 
   },
   googleId: {
     type: String,
     unique: true,
     sparse: true,
     required: false,
-    default: undefined // Ensures field is omitted if not provided
+    default: undefined 
   },
 });
 

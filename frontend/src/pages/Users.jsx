@@ -1,4 +1,4 @@
-// src/pages/Users.jsx
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
@@ -90,12 +90,12 @@ const Users = () => {
           <LogoutButton />
         </div>
 
-        {/* Search Bar */}
+       
         <div className="mb-4">
           <input
             type="text"
             placeholder="Search users..."
-            // Add bg-white here to ensure visibility
+           
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-purple-500 bg-white"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

@@ -7,7 +7,7 @@ const Signup = () => {
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,20 +20,20 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      // --- ACTUAL API CALL ---
+      
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`,
         form,
         { withCredentials: true }
       );
 
-      // --- CRITICAL CORRECTION: Remove simulation and use actual data ---
+    
       setMessage(res.data.msg || 'Signup successful! Please log in.');
       setIsError(false);
-      // Redirect to login page after successful signup
-      navigate('/users'); // Redirect to login page
+      
+      navigate('/users'); 
     } catch (err) {
-      console.error("Signup error:", err.response?.data || err.message); // Log detailed error
+      console.error("Signup error:", err.response?.data || err.message); 
       setMessage(err.response?.data?.msg || 'Signup failed');
       setIsError(true);
     } finally {
@@ -43,7 +43,6 @@ const Signup = () => {
 
   const handleGoogleSignup = () => {
     console.log('Initiating Google Signup');
-    // For Google OAuth, window.open is appropriate as it redirects the entire window
     window.open(`${import.meta.env.VITE_BACKEND_URL}/api/auth/google`, '_self');
   };
 
@@ -135,7 +134,7 @@ const Signup = () => {
 
         <p className="text-center text-gray-600 my-3">or</p>
 
-        {/* Changed button to Link for proper navigation to external OAuth */}
+       
         <Link
           to={`${import.meta.env.VITE_BACKEND_URL}/api/auth/google`}
           target="_self"

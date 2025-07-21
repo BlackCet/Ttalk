@@ -1,13 +1,13 @@
 import { io } from 'socket.io-client';
 
-// The URL of your backend Socket.IO server
-const URL = 'http://localhost:5000'; // Make sure this matches your backend's PORT
+
+const URL = `${import.meta.env.VITE_BACKEND_URL}`; 
 
 const socket = io(URL, {
-  // If you need to send auth tokens with socket connection, configure here
-  // auth: {
-  //   token: localStorage.getItem('token') // Example
-  // }
+  
+   auth: {
+  token: localStorage.getItem('token') 
+   }
 });
 
 socket.on('connect', () => {

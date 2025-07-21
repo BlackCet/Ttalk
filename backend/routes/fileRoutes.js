@@ -5,13 +5,11 @@ const fs = require('fs');
 const Message = require('../models/Message');
 const router = express.Router();
 
-// Ensure 'uploads/' directory exists
 const uploadsDir = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
 
-// Multer storage configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadsDir),
   filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
@@ -19,7 +17,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// File upload route
 router.post('/upload', upload.single('file'), async (req, res) => {
   try {
     const { senderId, receiverId, type } = req.body;

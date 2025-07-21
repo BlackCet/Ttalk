@@ -1,6 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const User = require('../models/User'); // Adjust path as needed
+const User = require('../models/User'); 
 
 passport.use(
   new GoogleStrategy(
@@ -15,7 +15,6 @@ passport.use(
 
         const googleEmail = profile.emails?.[0]?.value;
 
-        // 1. Try to find a user by googleId
         let user = await User.findOne({ googleId: profile.id });
 
         if (user) {
@@ -28,7 +27,7 @@ passport.use(
           return done(null, user);
         }
 
-        // 2. If no user found by googleId, check if an existing user has this Google email
+        
         if (googleEmail) {
           user = await User.findOne({ email: googleEmail });
           if (user) {
@@ -40,7 +39,7 @@ passport.use(
           }
         }
 
-        // 3. If no existing user found, create a new user
+        
         console.log('Creating new user from Google profile...');
         const newUser = new User({
           name: profile.displayName,

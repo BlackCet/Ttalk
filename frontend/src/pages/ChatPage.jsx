@@ -15,7 +15,7 @@ const ChatPage = () => {
   const [text, setText] = useState("");
   const bottomRef = useRef(null);
 
-  // --- Message Handling Callbacks ---
+  
   const handleReceiveMessage = useCallback((msg) => {
     setMessages((prev) => {
       const isDuplicate = prev.some((m) => m._id === msg._id);
@@ -43,11 +43,11 @@ const ChatPage = () => {
     setMessages((prev) => prev.filter(msg => msg._id !== tempId));
   }, []);
 
-  // --- Main Effect Hook for Socket and Data Fetching ---
+  
   useEffect(() => {
     if (!currentUser || !selectedUser) {
       console.log("No current user or selected user, redirecting.");
-      navigate("/"); // Uncommented for real app behavior
+      navigate("/"); 
       return;
     }
 
@@ -56,7 +56,7 @@ const ChatPage = () => {
 
     const fetchMessages = async () => {
       try {
-        // Restored actual axios call for messages
+        
         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/messages/${currentUser._id}/${selectedUser._id}`);
         setMessages(res.data.map(msg => ({ ...msg, optimistic: false })));
       } catch (err) {
@@ -64,7 +64,7 @@ const ChatPage = () => {
         if (err.response && (err.response.status === 401 || err.response.status === 403)) {
           localStorage.removeItem('token');
           localStorage.removeItem('userId');
-          navigate('/login'); // Uncommented for real app behavior
+          navigate('/login'); 
         }
       }
     };
@@ -83,12 +83,12 @@ const ChatPage = () => {
     };
   }, [currentUser, selectedUser, navigate, handleReceiveMessage, handleMessageConfirmed, handleSendMessageFailed]);
 
-  // --- Effect Hook for Auto-Scrolling ---
+ 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // --- Send Text Message Function ---
+  
   const sendMessage = () => {
     if (!text.trim()) return;
 
@@ -116,7 +116,7 @@ const ChatPage = () => {
     setText("");
   };
 
-  // --- Handle File Upload Function ---
+  
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file || !currentUser || !selectedUser) return;
@@ -149,7 +149,7 @@ const ChatPage = () => {
     formData.append("tempId", tempId);
 
     try {
-      // Restored actual axios post for file upload
+      
       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/files/upload`, formData);
       console.log('File upload initiated. Waiting for socket confirmation...');
     } catch (err) {
@@ -172,9 +172,9 @@ const ChatPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-purple-300 to-pink-400 flex items-center justify-center p-4 font-sans">
       <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-lg md:max-w-xl lg:max-w-2xl min-h-[600px] max-h-[90vh] flex flex-col relative">
 
-        {/* Chat Header */}
+        
         <div className="flex justify-between items-center pb-4 mb-4 border-b border-gray-200">
-          {/* Back button */}
+         
           <button
             onClick={() => navigate('/users')}
             className="text-gray-600 hover:text-purple-700 transition-colors duration-200 p-2 rounded-full hover:bg-gray-100"
@@ -190,7 +190,7 @@ const ChatPage = () => {
           <LogoutButton />
         </div>
 
-        {/* Messages Display Area */}
+        
         <div className="flex-grow overflow-y-auto pr-2 mb-4 space-y-3">
           {messages.map((msg) => (
             <div
@@ -255,7 +255,7 @@ const ChatPage = () => {
           <div ref={bottomRef} />
         </div>
 
-        {/* Message Input and Send Area */}
+
         <div className="flex gap-3 mt-auto pt-4 border-t border-gray-200">
           <input
             type="text"
@@ -267,7 +267,7 @@ const ChatPage = () => {
               }
             }}
             placeholder="Type your message..."
-            // Added bg-white here for visibility
+            
             className="shadow appearance-none border rounded-full flex-grow py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-purple-500 bg-white"
           />
           <button

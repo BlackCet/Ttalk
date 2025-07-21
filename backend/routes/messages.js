@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Message = require('../models/Message');
 
-// GET messages between two users
+
 router.get('/:user1/:user2', async (req, res) => {
   const { user1, user2 } = req.params;
   try {
@@ -19,7 +19,7 @@ router.get('/:user1/:user2', async (req, res) => {
   }
 });
 
-// ✅ Add this to handle POST
+
 router.post('/', async (req, res) => {
   try {
     const newMessage = new Message(req.body);
