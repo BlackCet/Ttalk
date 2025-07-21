@@ -1,0 +1,228 @@
+# -------------------------------------------------------
+# Operating System files
+# -------------------------------------------------------
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.nfs*
+
+# -------------------------------------------------------
+# Node.js
+# -------------------------------------------------------
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables
+.env
+.env.test
+.env.*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+log.txt
+*.out
+*.err
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Testing
+jest-html-reporters-*
+test-output/
+cypress/videos/
+cypress/screenshots/
+
+# -------------------------------------------------------
+# VS Code
+# -------------------------------------------------------
+
+.vscode/
+.code-workspace
+
+# -------------------------------------------------------
+# JetBrains IDEs
+# -------------------------------------------------------
+
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# -------------------------------------------------------
+# Python
+# -------------------------------------------------------
+
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.pyo
+*.pyd
+
+# pipenv
+Pipfile.lock
+
+# Poetry
+poetry.lock
+
+# Pytest
+.cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# MyPy
+.mypy_cache/
+
+# PyInstaller
+*.spec
+
+# Virtual envs
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# -------------------------------------------------------
+# Java
+# -------------------------------------------------------
+
+*.class
+*.jar
+*.war
+*.ear
+target/
+build/
+
+# Maven
+log/
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+
+# Eclipse
+.project
+.classpath
+.cproject
+.settings/
+
+# IntelliJ
+*.iml
+.idea/
+out/
+
+# -------------------------------------------------------
+# Database / SQLite / others
+# -------------------------------------------------------
+
+*.sqlite3
+*.sqlite
+*.db
+*.sql
+*.bak
+*.dump
+
+# -------------------------------------------------------
+# Miscellaneous
+# -------------------------------------------------------
+
+*.swp
+*.swo
+*.bak
+*.tmp
+*.temp
+*.old
+*.orig
+
+# Compiled source
+*.o
+*.obj
+*.dll
+*.exe
+*.out
+
+# Office/temp files
+*.tmp
+*.bak
+*.wbk
+*.swp
+*.~*
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.gz
+
+# Lock files
+.lock-wscript
+*.lock
+
+# -------------------------------------------------------
+# Project-specific (edit below as needed)
+# -------------------------------------------------------
+
+# Ignore uploads/media folder
+uploads/
+media/
+
+# Ignore build artifacts
+build/
+dist/
+
+# Ignore coverage reports
+coverage/
+
+# Ignore local dev files
+local.env
+*.local.js
+
+# Secrets
+secrets.*
+apikeys.*
+
+# End of file
